@@ -26,7 +26,7 @@ public class NurseriesController : ControllerBase
         else
         {
             NurseryDTO nurseryDto = new NurseryDTO(nursery);
-            return Ok();
+            return Ok(nurseryDto);
         }
     }
     
