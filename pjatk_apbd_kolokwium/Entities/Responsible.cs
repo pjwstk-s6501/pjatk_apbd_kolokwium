@@ -1,7 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace pjatk_apbd_kolokwium.Models;
 
+[PrimaryKey("SeedingBatchId","EmployeeId")]
 public class Responsible
 {
     public int SeedingBatchId { get; set; }

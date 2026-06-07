@@ -6,6 +6,7 @@ namespace pjatk_apbd_kolokwium.Models;
 [Table("Seedling_Batch")]
 public class SeedingBatch
 {
+    [Key]
     public int BatchId { get; set; }
     
     public int NurseryId { get; set; }

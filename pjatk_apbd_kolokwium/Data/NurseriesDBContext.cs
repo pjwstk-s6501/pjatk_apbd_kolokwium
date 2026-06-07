@@ -3,16 +3,11 @@ using pjatk_apbd_kolokwium.Models;
 
 namespace pjatk_apbd_kolokwium.Data;
 
-public class NurseriesDbContext : DbContext
+public class NurseriesDbContext(DbContextOptions<NurseriesDbContext> options) : DbContext(options)
 {
-    public NurseriesDbContext(DbContextOptions<NurseriesDbContext> options)
-        : base(options)
-    {
-    }
-    
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        options.UseSqlite("Data Source=apbd_local.db");
+        options.UseSqlite("Data Source=apbd_kolokwium.db");
     }
     
     public DbSet<Employee> Employees { set; get; }
