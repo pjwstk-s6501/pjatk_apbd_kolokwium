@@ -35,6 +35,18 @@ public class NurseriesController : ControllerBase
                 nurseryBatchDto.Quantity = batch.Quantity;
                 nurseryBatchDto.SownDate = batch.SownDate;
                 nurseryBatchDto.ReadyDate = batch.ReadyDate;
+                var responsibles = _dbContext.Responsibles
+                    .Where(responsible => responsible.SeedingBatchId == batch.BatchId).ToList();
+                var responsiblesDtos = new List<ResponsibleDTO>();
+                foreach (var responsible in responsibles)
+                {
+                    var responsibleDto = new ResponsibleDTO();
+                    responsibleDto.FirstName = responsible.Employee.FirstName;
+                    responsibleDto.LastName = responsible.Employee.LastName;
+                    responsibleDto.Role = responsible.Role;
+                }
+
+                nurseryBatchDto.Responsible = responsiblesDtos;
                 batchesDtos.Add(nurseryBatchDto);
             }
             nurseryDto.Batches = batchesDtos;
