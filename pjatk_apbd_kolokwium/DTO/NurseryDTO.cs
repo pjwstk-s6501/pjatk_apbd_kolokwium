@@ -17,8 +17,8 @@ public class TreeSpieciesDTO
 public class NurseryBatchDTO {
     
     public int BatchId { get; set; }
-    public int Qunatity { get; set; }
-    public DateTime DownDate {get; set; }
+    public int Quantity { get; set; }
+    public DateTime SownDate {get; set; }
     public DateTime ReadyDate { get; set; }
     public IEnumerable<TreeSpieciesDTO> Species { get; set; }
     public IEnumerable<ResponsibleDTO> Responsible { get; set; }
@@ -36,4 +36,6 @@ public class NurseryDTO
     public int NurseryId { get; set; }
     public String Name { get; set; }
     public DateTime EstablishedDate { get; set; }
+    
+    public IEnumerable<NurseryBatchDTO> Batches { get; set; }
 }

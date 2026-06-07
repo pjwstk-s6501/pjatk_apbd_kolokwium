@@ -26,6 +26,18 @@ public class NurseriesController : ControllerBase
         else
         {
             NurseryDTO nurseryDto = new NurseryDTO(nursery);
+            var batches = _dbContext.SeedingBatches.Where(batch => batch.NurseryId == nursery.NurseryId).ToList();
+            var batchesDtos = new List<NurseryBatchDTO>();
+            foreach (var batch in batches)
+            {
+                var nurseryBatchDto = new NurseryBatchDTO();
+                nurseryBatchDto.BatchId = batch.BatchId;
+                nurseryBatchDto.Quantity = batch.Quantity;
+                nurseryBatchDto.SownDate = batch.SownDate;
+                nurseryBatchDto.ReadyDate = batch.ReadyDate;
+                batchesDtos.Add(nurseryBatchDto);
+            }
+            nurseryDto.Batches = batchesDtos;
             return Ok(nurseryDto);
         }
     }
