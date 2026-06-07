@@ -15,15 +15,17 @@ public class NurseriesController : ControllerBase
     public NurseriesController(NurseriesDbContext db) => _dbContext = db;
     
     [HttpGet("{id:int}/batches")]
-    public ActionResult<List<NurseryDTO>> GetWithBatches(int id)
+    public ActionResult<NurseryDTO> GetWithBatches(int id)
     {
         Nursery? nursery = _dbContext.Nurseries.Find(id);
+        
         if (nursery == null)
         {
             return NotFound();
         }
         else
         {
+            NurseryDTO nurseryDto = new NurseryDTO(nursery);
             return Ok();
         }
     }
