@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using pjatk_apbd_kolokwium.Data;
 using pjatk_apbd_kolokwium.DTO;
+using pjatk_apbd_kolokwium.Models;
 
 namespace pjatk_apbd_kolokwium.Controllers;
 
@@ -8,12 +10,22 @@ namespace pjatk_apbd_kolokwium.Controllers;
 public class NurseriesController : ControllerBase
 {
     
-    
+    private readonly NurseriesDbContext _dbContext;
+
+    public NurseriesController(NurseriesDbContext db) => _dbContext = db;
     
     [HttpGet("{id:int}/batches")]
     public ActionResult<List<NurseryDTO>> GetWithBatches(int id)
     {
-        return Ok(new List<NurseryDTO>());
+        Nursery? nursery = _dbContext.Nurseries.Find(id);
+        if (nursery == null)
+        {
+            return NotFound();
+        }
+        else
+        {
+            return Ok();
+        }
     }
     
     
